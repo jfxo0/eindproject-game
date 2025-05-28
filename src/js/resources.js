@@ -10,7 +10,7 @@ const Resources = {
     Hurt: new ImageSource('images/players/Pink_Monster/Pink_Monster_Hurt_4.png'),
     Roll: new ImageSource('images/players/Pink_Monster/roll4.png'),
     Rock: new ImageSource('images/rocks/PNG/canyon_rocks/canyon_rock2.png'),
-    Rock2: new ImageSource('public/images/rocks/PNG/canyon_rocks/canyon_rock1.png'),
+    Rock2: new ImageSource('images/rocks/PNG/canyon_rocks/canyon_rock1.png'),
     Heart: new ImageSource('images/heart.png', { wrapping: ImageWrapping.Repeat }),
     Platform: new ImageSource('images/platform.png', { wrapping: ImageWrapping.Repeat })
 }
