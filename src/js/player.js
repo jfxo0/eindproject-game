@@ -1,16 +1,16 @@
 import { Actor, Animation, CollisionType, DegreeOfFreedom, Keys, range, SpriteSheet, Vector } from "excalibur"
 import { Resources } from "./resources"
 import { Rock } from "./rock"
+import { Platform } from "./platform";
 
 export class Player extends Actor {
-
-    score = 0;
-    #lives = 3
+    isOnGround;
+    score;
+    #lives;
     gameOver = false;
-
     constructor() {
 
-        super({ width: 20, height: 30 })
+        super({ width: 20, height: 33 })
 
         const spriteSheetRun = SpriteSheet.fromImageSource({
             image: Resources.Player,
@@ -54,17 +54,21 @@ export class Player extends Actor {
         this.graphics.add("death", death);
         this.graphics.use(idle);
 
-        this.on("exitviewport", () => this.kill())
+        this.#lives = 3;
+
+        this.on("exitviewport", () => this.restartGame())
 
     }
 
     onInitialize(engine) {
-        this.body.useGravity = true;
+        // this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;
         // this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation)
         this.scale = new Vector(2.35, 2.35);
-        this.pos = new Vector(20, 285)
+        this.pos = new Vector(20, 200)
         this.vel = new Vector(0, 0)
+
+        this.score++;
         this.on("collisionstart", (event) => this.handleCollision(event));
     }
 
@@ -72,7 +76,7 @@ export class Player extends Actor {
     onPreUpdate(engine, delta) {
 
         let xspeed = 0
-        let yspeed = 0
+        // this.isOnGround = false;
         this.graphics.use('idle')
 
         if (engine.input.keyboard.isHeld(Keys.Left)) {
@@ -84,12 +88,7 @@ export class Player extends Actor {
             this.graphics.use('runright')
         }
 
-        if (engine.input.keyboard.wasPressed(Keys.Space)) {
-            this.body.applyLinearImpulse(new Vector(0, -250))
 
-            this.graphics.use('jump')
-
-        }
 
         if (engine.input.keyboard.isHeld(Keys.Down)) {
             xspeed = 10
@@ -97,12 +96,21 @@ export class Player extends Actor {
             console.log(`roll`)
         }
 
-        this.vel = new Vector(xspeed, yspeed)
+        if (engine.input.keyboard.wasPressed(Keys.Space) && this.isOnGround) {
+            console.log('jump')
+            this.body.applyLinearImpulse(new Vector(0, -180 * delta))
+            this.graphics.use('jump')
+            this.isOnGround = false
+            console.log('is not on the ground')
+        }
 
-        // if (this.pos.y > 1000) {
-        //     engine.gameOver()
-        // }
 
+        else {
+            // console.log('ur not on the ground')
+        }
+
+
+        this.vel = new Vector(xspeed, this.vel.y)
     }
 
 
@@ -118,6 +126,13 @@ export class Player extends Actor {
         console.log('hearts')
     }
 
+
+
+    restartGame() {
+
+        this.scene?.engine.gameOver();
+    }
+
     handleCollision(event) {
 
         if (event.other.owner instanceof Rock) {
@@ -127,12 +142,18 @@ export class Player extends Actor {
             // this.graphics.use('death')
             // event.other.owner.kill()
 
+
             this.scene?.engine.gameOver();
             // this.score = 0;
             // this.scene?.engine.ui.updateScore();
             // console.log('collission')
 
-        }
+        } else
+            if (event.other.owner instanceof Platform) {
+                this.isOnGround = true;
+                console.log('is on the ground')
+            }
+
 
     }
 }

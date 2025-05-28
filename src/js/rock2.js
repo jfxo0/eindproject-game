@@ -26,7 +26,7 @@ export class Rock2 extends Rock {
     resetPosition(e) {
         const rightside = this.scene.engine.drawWidth
         this.pos = new Vector(Math.random() * 400 + rightside, 285);
-        this.acc = new Vector(-3, 0)
+        // this.acc = new Vector(-3, 0)
         // this.vel = new Vector(-80, 0);
         // this.acc = new Vector(-40, 0)
     }

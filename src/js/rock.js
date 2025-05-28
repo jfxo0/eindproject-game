@@ -22,27 +22,27 @@ export class Rock extends Actor {
         this.on("exitviewport", (e) => this.resetPosition(e))
     }
 
-    onInitialize(engine) {
+    // onInitialize(engine) {
 
-        this.counter = 0
-    }
+    //     this.counter = 0
+    // }
 
-    onPostUpdate(engine) {
-        this.counter++
+    // onPostUpdate(engine) {
+    //     this.counter++
 
-        // Na 120 frames (~2 seconden bij 60 FPS)
-        if (this.counter > 1) {
-            this.counter = 0
-            // const rock = new Rock()
-            // engine.add(rock)
+    //     // Na 120 frames (~2 seconden bij 60 FPS)
+    //     if (this.counter > 1) {
+    //         this.counter = 0
+    //         // const rock = new Rock()
+    //         // engine.add(rock)
 
-        }
-    }
+    //     }
+    // }
 
     resetPosition(e) {
         const rightside = this.scene.engine.drawWidth
         this.pos = new Vector(Math.random() * 1280 + rightside, 285);
-        // this.vel = new Vector(-80, 0);
+        this.vel = new Vector(-50, 0);
         this.acc = new Vector(-3, 0)
     }
 

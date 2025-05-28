@@ -37,8 +37,12 @@ export class Game extends Engine {
         const bg = new Background();
         this.add(bg);
 
-        const platform = new Platform();
+        const platform = new Platform(0, 400);
         this.add(platform);
+
+        const player = new Player();
+        this.add(player);
+
 
         // for (let i = 0; i < 5; i++) {
         const rock = new Rock();
@@ -47,16 +51,14 @@ export class Game extends Engine {
 
 
         // for (let i = 0; i < 5; i++) {
-        const rock2 = new Rock2();
-        this.add(rock2);
-        // }
+        // const rock2 = new Rock2();
+        // this.add(rock2);
+        // // }
 
 
 
         console.log("start de game!");
 
-        const player = new Player();
-        this.add(player);
 
         this.ui = new UI(player)
         this.add(this.ui);

@@ -31,7 +31,7 @@ export class UI extends Actor {
     }
 
     updateScore() {
-        this.label.text = `Score: ${this.player.score}`;
+        this.label.text = `Score ${this.player.score}`;
     }
 
 }
