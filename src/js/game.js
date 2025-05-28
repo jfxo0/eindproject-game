@@ -50,7 +50,7 @@ export class Game extends Engine {
         const rock2 = new Rock2();
         this.add(rock2);
         // }
-        // jnjn
+
 
 
         console.log("start de game!");
