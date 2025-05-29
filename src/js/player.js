@@ -4,10 +4,12 @@ import { Rock } from "./rock"
 import { Platform } from "./platform";
 
 export class Player extends Actor {
+
     isOnGround;
     score;
     #lives;
     gameOver = false;
+
     constructor() {
 
         super({ width: 20, height: 33 })
@@ -67,9 +69,10 @@ export class Player extends Actor {
         this.scale = new Vector(2.35, 2.35);
         this.pos = new Vector(20, 200)
         this.vel = new Vector(0, 0)
-
-        this.score++;
+        this.score = 0;
         this.on("collisionstart", (event) => this.handleCollision(event));
+        this.scene?.engine.on("postupdate", (event) => this.addPoint(event))
+
     }
 
 
@@ -114,45 +117,48 @@ export class Player extends Actor {
     }
 
 
-    updateScore() {
-        if (!this.gameOver) {
-            this.score++;
-            this.scene?.engine.ui.updateScore();
+    loseLife() {
+        this.#lives--;
+        if (this.#lives <= 0) {
+            this.gameOver = true;
+            this.scene?.engine.goToScene('game-over');
         }
     }
 
-    showHearts() {
-        this.scene.engine.heart.showHearts(3);
-        console.log('hearts')
+    addPoint() {
+        // if (!this.handleCollision) {
+        //     this.score++
+        //     this.scene?.engine.ui.updateScore(this.score);
+        // }
+        this.score += 1 / 60; // 60 punt per seconden -> daarom delen door 60 !!! -> nu 1 punt per seconden
+        this.scene?.engine.ui.updateScore(Math.floor(this.score)); // Math.floor = geen decimalen
     }
-
-
 
     restartGame() {
 
         this.scene?.engine.gameOver();
     }
 
+
     handleCollision(event) {
 
         if (event.other.owner instanceof Rock) {
-            // this.gameOver = true;
-            // console.log('gameover')
 
-            // this.graphics.use('death')
-            // event.other.owner.kill()
+            this.loseLife;
 
+            this.score = 0;
+            this.scene?.engine.ui.updateScore(this.score);
 
             this.scene?.engine.gameOver();
-            // this.score = 0;
-            // this.scene?.engine.ui.updateScore();
+            event.other.owner.kill()
             // console.log('collission')
 
-        } else
-            if (event.other.owner instanceof Platform) {
-                this.isOnGround = true;
-                console.log('is on the ground')
-            }
+        } else if (event.other.owner instanceof Platform) {
+            this.isOnGround = true;
+            console.log('is on the ground')
+            // this.score++;
+            // this.scene?.engine.ui.updateScore(this.score);
+        }
 
 
     }

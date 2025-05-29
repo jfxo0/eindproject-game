@@ -5,12 +5,10 @@ export class UI extends Actor {
 
     player;
 
-    constructor(player) {
+    constructor() {
         super();
-        this.player = player
+        // this.player = player
     }
-
-
 
     onInitialize(engine) {
 
@@ -30,8 +28,8 @@ export class UI extends Actor {
         this.addChild(this.label);
     }
 
-    updateScore() {
-        this.label.text = `Score ${this.player.score}`;
+    updateScore(score) {
+        this.label.text = `Score ${score}`;
     }
 
 }

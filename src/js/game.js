@@ -1,5 +1,5 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, DisplayMode, SolverStrategy } from "excalibur"
+import { Actor, Engine, Vector, DisplayMode, SolverStrategy, Label, Font, Color } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { Background } from './background.js'
 import { Player } from './player.js'
@@ -12,8 +12,7 @@ import { Platform } from './platform.js'
 
 export class Game extends Engine {
 
-    counter;
-    lives;
+    ui;
 
     constructor() {
         super({
@@ -31,9 +30,7 @@ export class Game extends Engine {
     }
 
     startGame() {
-
-        this.counter = 0;
-
+        this.score = 0;
         const bg = new Background();
         this.add(bg);
 
@@ -43,40 +40,25 @@ export class Game extends Engine {
         const player = new Player();
         this.add(player);
 
-
-        // for (let i = 0; i < 5; i++) {
         const rock = new Rock();
         this.add(rock);
-        // }
 
 
-        // for (let i = 0; i < 5; i++) {
         // const rock2 = new Rock2();
         // this.add(rock2);
-        // // }
-
-
 
         console.log("start de game!");
 
-
-        this.ui = new UI(player)
+        this.ui = new UI()
         this.add(this.ui);
 
         // const hearts = new Hearts();
-        // this.add(hearts)
         // hearts.showHearts(3)
+        // this.add(hearts);
+        // this.add('game-over', new GameOver())
 
     }
 
-    onPostUpdate() {
-        // this.counter++
-        // if (this.counter > 120) {
-        //     this.add(new Rock())
-        //     this.add(new Rock2())
-        //     this.counter = 0
-        // }
-    }
 
     gameOver() {
         for (let actor of this.currentScene.actors) {

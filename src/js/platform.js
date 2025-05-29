@@ -10,7 +10,6 @@ export class Platform extends Actor {
             x, y,
             width: 2000,
             height: 150,
-            // color: Color.Cyan
         });
 
         // const sprite = Resources.Platform.toSprite()
@@ -24,31 +23,4 @@ export class Platform extends Actor {
         // this.body.friction = 0;
 
     }
-
-
-    // onInitialize(engine) {
-
-    //     this.sprite = new Sprite({
-    //         image: Resources.Platform,
-    //         sourceView: { x: 0, y: 0.01, width: engine.width, height: engine.width }
-    //     })
-
-    //     // this.anchor = Vector.Zero
-    //     this.graphics.use(this.sprite)
-    //     console.log('there is a background')
-
-    // }
-
-    // // onInitialize(engine) {
-
-    // //     // this.body.collisionType = CollisionType.Fixed;
-    // // }
-
-    // onPostUpdate(engine, delta) {
-    //     this.body.CollisionType = CollisionType.Fixed;
-    //     this.sprite.sourceView.x += .05 * delta;
-
-    // }
-
-
 }
