@@ -15,7 +15,7 @@ export class Rock extends Actor {
         this.vel = new Vector(-50, 0)
 
 
-        this.scale = new Vector(0.9, 0.9);
+        this.scale = new Vector(0.8, 0.8);
 
 
 

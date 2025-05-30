@@ -3,11 +3,8 @@ import { Actor, Color, Font, Label, Vector } from "excalibur";
 export class UI extends Actor {
     label;
 
-    player;
-
     constructor() {
         super();
-        // this.player = player
     }
 
     onInitialize(engine) {

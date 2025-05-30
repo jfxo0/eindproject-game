@@ -6,8 +6,9 @@ import { Player } from './player.js'
 import { Rock } from './rock.js'
 import { Rock2 } from './rock2.js'
 import { UI } from './ui.js'
-import { Hearts } from './hearts.js'
 import { Platform } from './platform.js'
+import { Heart } from './heart.js'
+import { GameOver } from './gameOver.js'
 
 
 export class Game extends Engine {
@@ -44,19 +45,22 @@ export class Game extends Engine {
         this.add(rock);
 
 
-        // const rock2 = new Rock2();
-        // this.add(rock2);
+        const rock2 = new Rock2();
+        this.add(rock2);
+
+        const rock3 = new Rock2()
+        this.add(rock3)
 
         console.log("start de game!");
 
         this.ui = new UI()
         this.add(this.ui);
 
-        // const hearts = new Hearts();
-        // hearts.showHearts(3)
-        // this.add(hearts);
-        // this.add('game-over', new GameOver())
+        const hearts = new Heart();
+        this.add(hearts);
 
+        // this.add('game-over', new GameOver())
+        // this.add('main', this.gameOver)
     }
 
 
