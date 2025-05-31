@@ -24,7 +24,7 @@ export class Pickup extends Actor {
         this.graphics.add("health", health);
         this.graphics.use(health);
 
-        this.pos = new Vector(Math.random() * 1200, 480)
+        this.pos = new Vector(Math.random() * 1000, 480)
         this.vel = new Vector(-50, 0)
         this.on("exitviewport", (e) => this.resetPosition(e))
     }
