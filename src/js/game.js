@@ -14,7 +14,7 @@ import { Pickup } from './pickup.js'
 export class Game extends Engine {
 
     ui;
-    counter;
+    #counter;
 
     constructor() {
         super({
@@ -28,6 +28,9 @@ export class Game extends Engine {
             }
         })
 
+        this.canvas.style.width = '100vw';
+        this.canvas.style.height = '100vh';
+        // test
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
@@ -62,18 +65,18 @@ export class Game extends Engine {
         this.add(hearts);
 
 
-        this.counter = 0
+        this.#counter = 0
         // this.add('game-over', new GameOver())
         // this.add('main', this.gameOver)
     }
 
     onPostUpdate() {
-        this.counter++
-        if (this.counter > 800) {
+        this.#counter++
+        if (this.#counter > 800) {
             this.add(new Pickup())
             this.add(new Rock())
             this.add(new Rock2())
-            this.counter = 0
+            this.#counter = 0
             console.log('new health')
         }
 
