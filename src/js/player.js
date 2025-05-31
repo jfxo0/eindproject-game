@@ -114,7 +114,7 @@ export class Player extends Actor {
         if (engine.input.keyboard.wasPressed(Keys.Space) && this.isOnGround) {
             console.log('jump')
 
-            this.body.applyLinearImpulse(new Vector(0, -170 * delta))
+            this.body.applyLinearImpulse(new Vector(0, -70 * delta))
 
             this.isOnGround = false;
             this.graphics.use('jump')

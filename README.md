@@ -12,7 +12,7 @@
 - 640 × 480
 - 800 × 600
 
-### Bewerk deze readme file
-
-Verwijder deze instructies, plaats hier een beschrijving van jouw game.
-- endless runner 
+### endless runner
+- you can run left & right and also jump
+- the longer ur alive the more points
+- you can pickup a life
