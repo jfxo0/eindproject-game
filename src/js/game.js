@@ -38,7 +38,7 @@ export class Game extends Engine {
         const bg = new Background();
         this.add(bg);
 
-        const platform = new Platform(0, 400);
+        const platform = new Platform(0, 600);
         this.add(platform);
 
         const player = new Player();

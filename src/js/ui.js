@@ -11,7 +11,7 @@ export class UI extends Actor {
 
         this.label = new Label({
 
-            pos: new Vector(250, 30),
+            pos: new Vector(550, 30),
             font: new Font({
 
                 size: 50,
