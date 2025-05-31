@@ -13,7 +13,7 @@ const Resources = {
     Rock2: new ImageSource('images/rocks/PNG/canyon_rocks/canyon_rock1.png'),
     Heart: new ImageSource('images/heart.png', { wrapping: ImageWrapping.Repeat }),
     Platform: new ImageSource('images/platform.png', { wrapping: ImageWrapping.Repeat }),
-    health: new ImageSource('/images/HealthPickup.png')
+    health: new ImageSource('images/HealthPickup.png')
 }
 
 const ResourceLoader = new Loader()
