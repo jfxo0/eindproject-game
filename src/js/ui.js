@@ -11,10 +11,10 @@ export class UI extends Actor {
 
         this.label = new Label({
 
-            pos: new Vector(490, 30),
+            pos: new Vector(550, 30),
             font: new Font({
 
-                size: 30,
+                size: 50,
                 family: 'Open Sans',
                 color: Color.White
 

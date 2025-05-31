@@ -3,12 +3,13 @@ import { Resources } from "./resources"
 import { Rock } from "./rock"
 import { Platform } from "./platform";
 import { Heart } from "./heart";
+import { Pickup } from "./pickup";
 
 export class Player extends Actor {
 
     isOnGround;
     #score;
-    lives;
+    #lives;
     gameOver = false;
     didJump;
     hearts = [];
@@ -17,7 +18,8 @@ export class Player extends Actor {
         super({ width: 20, height: 33 })
 
         this.body.collisionType = CollisionType.Active
-        this.body.mass = 10
+        this.body.mass = 8;
+        this.body.bounciness = 1;
 
         const spriteSheetRun = SpriteSheet.fromImageSource({
             image: Resources.Player,
@@ -67,7 +69,7 @@ export class Player extends Actor {
         this.graphics.add("hurt", hurt);
         this.graphics.use(idle);
 
-        this.lives = 3;
+        this.#lives = 3;
 
         this.on("exitviewport", () => this.restartGame())
 
@@ -112,7 +114,7 @@ export class Player extends Actor {
         if (engine.input.keyboard.wasPressed(Keys.Space) && this.isOnGround) {
             console.log('jump')
 
-            this.body.applyLinearImpulse(new Vector(0, -200 * delta))
+            this.body.applyLinearImpulse(new Vector(0, -70 * delta))
 
             this.isOnGround = false;
             this.graphics.use('jump')
@@ -132,41 +134,39 @@ export class Player extends Actor {
         this.hearts = [];
         console.log(this.hearts)
 
-        // Voeg hartjes toe als child actors van de speler
-
-        for (let i = 0; i < this.lives; i++) {
-            const heart = new Heart(i * 36); // elke hart iets naar rechts
+        for (let i = 0; i < this.#lives; i++) {
+            const heart = new Heart(i * 20);
             this.addChild(heart);
             this.hearts.push(heart);
         }
     }
 
     loseLife() {
-        if (this.lives > 0) {
-            this.lives--;
+
+        if (this.#lives > 0) {
+            this.#lives--;
             this.showHearts();
             this.graphics.use('hurt')
         }
-        if (this.lives == 0) {
+
+        if (this.#lives == 0) {
             this.gameOver = true;
-            // this.scene?.engine.goToScene('game-over');
+            this.graphics.use('death')
 
             this.restartGame()
         }
     }
 
     gainLife() {
-        this.lives++;
+        this.#lives++;
         this.showHearts();
     }
 
-    // loseLife() {
-    //     this.#lives--;
-    //     if (this.#lives <= 0) {
-    //         this.gameOver = true;
-    //         this.scene?.engine.goToScene('game-over');
-    //     }
-    // }
+    pickupLife() {
+        this.#lives++;
+        this.showHearts()
+        console.log("Player picked up life! Current health: " + this.#lives);
+    }
 
     addPoint() {
         this.#score += 1 / 60; // 60 punt per seconden -> daarom delen door 60 !!! -> nu 1 punt per seconden
@@ -196,6 +196,11 @@ export class Player extends Actor {
             console.log('is on the ground')
             // this.score++;
             // this.scene?.engine.ui.updateScore(this.score);
+        }
+
+        else if (event.other.owner instanceof Pickup) {
+            this.pickupLife()
+            event.other.owner.kill()
         }
 
 

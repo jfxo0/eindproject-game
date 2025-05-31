@@ -8,7 +8,7 @@ export class Platform extends Actor {
     constructor(x, y) {
         super({
             x, y,
-            width: 2000,
+            width: 6000,
             height: 150,
         });
 
@@ -17,9 +17,10 @@ export class Platform extends Actor {
     }
 
     onInitialize(engine) {
+        // this.body.bounciness = 1;
         this.body.collisionType = CollisionType.Fixed;
         // this.body.mass = 80;
-        // this.body.bounciness = 1;
+
         // this.body.friction = 0;
 
     }

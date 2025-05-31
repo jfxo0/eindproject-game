@@ -8,17 +8,18 @@ import { Rock2 } from './rock2.js'
 import { UI } from './ui.js'
 import { Platform } from './platform.js'
 import { Heart } from './heart.js'
-import { GameOver } from './gameOver.js'
+import { Pickup } from './pickup.js'
 
 
 export class Game extends Engine {
 
     ui;
+    counter;
 
     constructor() {
         super({
-            width: 640,
-            height: 360,
+            width: 1280,
+            height: 720,
             maxFps: 60,
             displayMode: DisplayMode.FitScreen,
             physics: {
@@ -35,7 +36,7 @@ export class Game extends Engine {
         const bg = new Background();
         this.add(bg);
 
-        const platform = new Platform(0, 400);
+        const platform = new Platform(0, 600);
         this.add(platform);
 
         const player = new Player();
@@ -48,8 +49,9 @@ export class Game extends Engine {
         const rock2 = new Rock2();
         this.add(rock2);
 
-        const rock3 = new Rock2()
-        this.add(rock3)
+        // const health = new Pickup();
+        // this.add(health)
+
 
         console.log("start de game!");
 
@@ -59,10 +61,23 @@ export class Game extends Engine {
         const hearts = new Heart();
         this.add(hearts);
 
+
+        this.counter = 0
         // this.add('game-over', new GameOver())
         // this.add('main', this.gameOver)
     }
 
+    onPostUpdate() {
+        this.counter++
+        if (this.counter > 800) {
+            this.add(new Pickup())
+            this.add(new Rock())
+            this.add(new Rock2())
+            this.counter = 0
+            console.log('new health')
+        }
+
+    }
 
     gameOver() {
         for (let actor of this.currentScene.actors) {
