@@ -18,8 +18,8 @@ export class Game extends Engine {
 
     constructor() {
         super({
-            width: 640,
-            height: 360,
+            width: 1280,
+            height: 720,
             maxFps: 60,
             displayMode: DisplayMode.FillScreen,
             physics: {
