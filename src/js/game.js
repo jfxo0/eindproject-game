@@ -21,21 +21,20 @@ export class Game extends Engine {
             width: 640,
             height: 360,
             maxFps: 60,
-            displayMode: DisplayMode.FitScreen,
+            displayMode: DisplayMode.FillScreen,
+            Background: Background(),
             physics: {
                 solver: SolverStrategy.Arcade,
                 gravity: new Vector(0, 800)
             }
         })
 
-        this.canvas.style.width = '100vw';
-        this.canvas.style.height = '100vh';
-        // test
         this.start(ResourceLoader).then(() => this.startGame())
     }
 
     startGame() {
         this.score = 0;
+
         const bg = new Background();
         this.add(bg);
 
