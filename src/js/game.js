@@ -18,8 +18,8 @@ export class Game extends Engine {
 
     constructor() {
         super({
-            width: 1280,
-            height: 720,
+            width: 640,
+            height: 360,
             maxFps: 60,
             displayMode: DisplayMode.FitScreen,
             physics: {
@@ -39,7 +39,7 @@ export class Game extends Engine {
         const bg = new Background();
         this.add(bg);
 
-        const platform = new Platform(0, 600);
+        const platform = new Platform(0, 400);
         this.add(platform);
 
         const player = new Player();

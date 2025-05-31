@@ -11,7 +11,7 @@ export class Rock extends Actor {
 
         // this.pos = new Vector(800, 285);
         // this.vel = new Vector(-150, 0);
-        this.pos = new Vector(700, 480)
+        this.pos = new Vector(500, 285)
         this.vel = new Vector(-50, 0)
 
 
@@ -34,7 +34,7 @@ export class Rock extends Actor {
 
     resetPosition(e) {
         const rightside = this.scene.engine.drawWidth
-        this.pos = new Vector(Math.random() * 1280 + rightside, 480);
+        this.pos = new Vector(Math.random() * 1280 + rightside, 285);
         this.vel = new Vector(-50, 0);
         this.acc = new Vector(-3, 0)
     }
