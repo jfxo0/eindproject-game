@@ -71,7 +71,7 @@ export class Game extends Engine {
 
     onPostUpdate() {
         this.#counter++
-        if (this.#counter > 800) {
+        if (this.#counter > 600) {
             this.add(new Pickup())
             this.add(new Rock())
             this.add(new Rock2())

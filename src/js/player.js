@@ -11,8 +11,7 @@ export class Player extends Actor {
     #score;
     #lives;
     gameOver = false;
-    didJump;
-    hearts = [];
+    #hearts = [];
     constructor() {
 
         super({ width: 20, height: 33 })
@@ -128,16 +127,16 @@ export class Player extends Actor {
     }
 
     showHearts() {
-        for (const i of this.hearts) {
+        for (const i of this.#hearts) {
             i.kill();
         }
-        this.hearts = [];
-        console.log(this.hearts)
+        this.#hearts = [];
+        console.log(this.#hearts)
 
         for (let i = 0; i < this.#lives; i++) {
             const heart = new Heart(i * 20);
             this.addChild(heart);
-            this.hearts.push(heart);
+            this.#hearts.push(heart);
         }
     }
 

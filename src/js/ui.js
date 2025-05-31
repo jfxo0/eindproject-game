@@ -1,7 +1,7 @@
 import { Actor, Color, Font, Label, Vector } from "excalibur";
 
 export class UI extends Actor {
-    label;
+    #label;
 
     constructor() {
         super();
@@ -9,7 +9,7 @@ export class UI extends Actor {
 
     onInitialize(engine) {
 
-        this.label = new Label({
+        this.#label = new Label({
 
             pos: new Vector(620, 30),
             font: new Font({
@@ -22,11 +22,11 @@ export class UI extends Actor {
 
         });
 
-        this.addChild(this.label);
+        this.addChild(this.#label);
     }
 
     updateScore(score) {
-        this.label.text = `Score ${score}`;
+        this.#label.text = `Score ${score}`;
     }
 
 }

@@ -17,12 +17,6 @@ export class Rock2 extends Rock {
     }
 
 
-    // onInitialize() {
-    //     // this.resetPosition()
-
-    // }
-
-
     resetPosition(e) {
         const rightside = this.scene.engine.drawWidth
         this.pos = new Vector(Math.random() * 1200 + rightside, 480);

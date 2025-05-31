@@ -2,7 +2,6 @@ import { Actor, Engine, EngineEvents, Sprite, Vector } from "excalibur"
 import { Resources } from "./resources"
 
 export class Rock extends Actor {
-    counter;
     constructor() {
         super({ width: Resources.Rock.width, height: Resources.Rock.height });
 
@@ -21,17 +20,6 @@ export class Rock extends Actor {
 
         this.on("exitviewport", (e) => this.resetPosition(e))
     }
-
-
-    // onPostUpdate() {
-    //     this.counter++
-    //     if (this.counter > 900) {
-    //         this.add(new Rock())
-    //         this.counter = 0
-    //         console.log('new enemy')
-    //     }
-    // }
-
     resetPosition(e) {
         const rightside = this.scene.engine.drawWidth
         this.pos = new Vector(Math.random() * 1280 + rightside, 480);
