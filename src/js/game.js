@@ -22,7 +22,6 @@ export class Game extends Engine {
             height: 360,
             maxFps: 60,
             displayMode: DisplayMode.FillScreen,
-            Background: Background(),
             physics: {
                 solver: SolverStrategy.Arcade,
                 gravity: new Vector(0, 800)
@@ -33,6 +32,7 @@ export class Game extends Engine {
     }
 
     startGame() {
+
         this.score = 0;
 
         const bg = new Background();
