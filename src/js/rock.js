@@ -2,11 +2,12 @@ import { Actor, Engine, EngineEvents, Sprite, Vector } from "excalibur"
 import { Resources } from "./resources"
 
 export class Rock extends Actor {
+    #sprite
     constructor() {
         super({ width: Resources.Rock.width, height: Resources.Rock.height });
 
-        this.sprite = Resources.Rock.toSprite();
-        this.graphics.use(this.sprite);
+        this.#sprite = Resources.Rock.toSprite();
+        this.graphics.use(this.#sprite);
 
         // this.pos = new Vector(800, 285);
         // this.vel = new Vector(-150, 0);

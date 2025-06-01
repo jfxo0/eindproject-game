@@ -4,7 +4,6 @@ import { Player } from "./player";
 import { Rock } from "./rock";
 
 export class Pickup extends Actor {
-    counter;
 
     constructor() {
         super({

@@ -11,9 +11,6 @@ export class Platform extends Actor {
             width: 6000,
             height: 150,
         });
-
-        // const sprite = Resources.Platform.toSprite()
-        // this.graphics.use(sprite);
     }
 
     onInitialize(engine) {

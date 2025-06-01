@@ -33,8 +33,6 @@ export class Game extends Engine {
 
     startGame() {
 
-        this.score = 0;
-
         const bg = new Background();
         this.add(bg);
 
@@ -60,13 +58,12 @@ export class Game extends Engine {
         this.ui = new UI()
         this.add(this.ui);
 
-        const hearts = new Heart();
-        this.add(hearts);
+        // const hearts = new Heart();
+        // this.add(hearts);
 
 
         this.#counter = 0
-        // this.add('game-over', new GameOver())
-        // this.add('main', this.gameOver)
+
     }
 
     onPostUpdate() {

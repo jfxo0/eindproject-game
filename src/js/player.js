@@ -7,10 +7,9 @@ import { Pickup } from "./pickup";
 
 export class Player extends Actor {
 
-    isOnGround;
+    #isOnGround;
     #score;
     #lives;
-    gameOver = false;
     #hearts = [];
     constructor() {
 
@@ -110,12 +109,12 @@ export class Player extends Actor {
 
 
 
-        if (engine.input.keyboard.wasPressed(Keys.Space) && this.isOnGround) {
+        if (engine.input.keyboard.wasPressed(Keys.Space) && this.#isOnGround) {
             console.log('jump')
 
             this.body.applyLinearImpulse(new Vector(0, -170 * delta))
 
-            this.isOnGround = false;
+            this.#isOnGround = false;
             this.graphics.use('jump')
             console.log('is not on the ground')
 
@@ -149,9 +148,7 @@ export class Player extends Actor {
         }
 
         if (this.#lives == 0) {
-            this.gameOver = true;
             this.graphics.use('death')
-
             this.restartGame()
         }
     }
@@ -191,7 +188,7 @@ export class Player extends Actor {
             // console.log('collission')
 
         } else if (event.other.owner instanceof Platform) {
-            this.isOnGround = true;
+            this.#isOnGround = true;
             console.log('is on the ground')
             // this.score++;
             // this.scene?.engine.ui.updateScore(this.score);
